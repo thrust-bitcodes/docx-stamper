@@ -13,7 +13,28 @@ thrust install docx-stamper
 
 ## Tutorial
 
-Primeiro vamos configurar nosso arquivo de inicialização *startup.js*, nele devemos fazer *require* do *docx-stamper*, e usar o mesmo.
+Primeiro vamos configurar um template em docx, com o seguinte texto:
+
+```
+{{nome}}
+
+{{#responsaveis}}
+  - {{razao_social}}
+    - {{telefone}}
+{{/responsaveis}}
+
+{{#contato}}
+  {{contato}}
+{{/contato}}
+```
+A sintaxe é semelhante a da espeficicação do mustache, onde `{{nome}}` será substituido pelo valor do objeto.
+
+`{{#responsaveis}}` e `{{/responsaveis}}` sinalizam o inicio e o fim de um bloco, caso `responsaveis` exista no objeto, a expressão contida será printada, se não, será deletada.
+Caso o valor da propriedade em questão seja um array, este bloco será repetido para cada item do array.
+
+Inicios e fim de blocos devem estar sempre sozinhos em uma linha, conforme mostrado no exemplo acima, não se preocupe, essas linhas não permanecerão no documento.
+
+Em seguida vamos criar o arquivo de inicialização *startup.js*, nele devemos fazer *require* do *docx-stamper*, e usar o mesmo.
 
 ```javascript
 //Realizamos o require dos bitcodes
@@ -23,7 +44,16 @@ var Files = Java.type('java.nio.file.Files');
 var Paths = Java.type('java.nio.file.Paths');
 
 var fileBytes = getFileBytes('/template.docx');
-var record = getRecord();
+var record = {
+  nome: 'Bruno',
+  responsaveis: [{
+    razao_social: 'João',
+    telefone: '321'
+  }, {
+    razao_social: 'Maria',
+    telefone: '123'
+  }]
+};
 
 var bytes = docxStamper.parseDocument(
   fileBytes,
@@ -34,24 +64,6 @@ var bytes = docxStamper.parseDocument(
 );
 
 saveFile('/output.pdf', bytes);
-
-function getRecord() {
-  return {
-    cod_contrato: 1,
-    teste: 'Uma string',
-    nomes: ['Bruno', 'Rodrigo'],
-    responsaveis: [{
-      razao_social: 'João',
-      telefone: '321'
-    }, {
-      razao_social: 'Maria',
-      telefone: '123'
-    }, {
-      razao_social: 'Jorge',
-      telefone: '654'
-    }]
-  };
-}
 
 function getFileBytes(file) {
   var path = Paths.get(file);
