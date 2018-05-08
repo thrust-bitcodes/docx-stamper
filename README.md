@@ -25,7 +25,7 @@ var Paths = Java.type('java.nio.file.Paths');
 var fileBytes = getFileBytes('/template.docx');
 var record = getRecord();
 
-var bytes = parseDocument(
+var bytes = docxStamper.parseDocument(
   fileBytes,
   record,
   {

@@ -5,6 +5,7 @@
     "version": "0.0.1",
     "author": "Bruno Machado",
     "dependencies": [
-        "thrust-bitcodes/majesty"
+        "thrust-bitcodes/majesty",
+        "thrust-bitcodes/docx-stamper"
     ]
   }
