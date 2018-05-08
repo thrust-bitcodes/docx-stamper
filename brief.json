@@ -1,0 +1,30 @@
+{
+  "description": "DOCX templates parser",
+  "name": "docx-stamper",
+  "path": "index.js",
+  "version": "0.0.1",
+  "author": "Bruno Machado",
+  "dependencies": {
+    "jars": [
+      "fr.opensagres.xdocreport:org.apache.poi.xwpf.converter.pdf:1.0.6",
+      "fr.opensagres.xdocreport:fr.opensagres.xdocreport.itext.extension:1.0.6",
+      "fr.opensagres.xdocreport:org.apache.poi.xwpf.converter.core:1.0.6",
+      "fr.opensagres.xdocreport:org.apache.poi.xwpf.converter.pdf:1.0.6",
+      "commons-codec:commons-codec:1.5",
+      "dom4j:dom4j:1.6.1",
+      "com.lowagie:itext:2.1.7",
+      "org.apache.poi:ooxml-schemas:1.1",
+      "org.apache.poi:poi:3.10-FINAL",
+      "org.apache.poi:poi-ooxml:3.10-FINAL",
+      "stax:stax-api:1.0.1",
+      "xml-apis:xml-apis:1.0.b2",
+      "org.apache.xmlbeans:xmlbeans:2.3.0",
+      "fr.opensagres.xdocreport:fr.opensagres.xdocreport.converter:2.0.1",
+      "fr.opensagres.xdocreport:fr.opensagres.xdocreport.converter.docx.xwpf:2.0.1",
+      "fr.opensagres.xdocreport:fr.opensagres.xdocreport.core:2.0.1",
+      "fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.pdf:2.0.1",
+      "fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.core:2.0.1",
+      "fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.xhtml:2.0.1"
+    ]
+  }
+}

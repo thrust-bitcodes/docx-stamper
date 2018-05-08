@@ -1,0 +1,10 @@
+{
+    "description": "docx-stamper test",
+    "name": "docx-stamper-test",
+    "path": "index.js",
+    "version": "0.0.1",
+    "author": "Bruno Machado",
+    "dependencies": [
+        "thrust-bitcodes/majesty"
+    ]
+  }
