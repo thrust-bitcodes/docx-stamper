@@ -15,7 +15,7 @@ var ConverterTypeTo = Java.type('fr.opensagres.xdocreport.converter.ConverterTyp
 var Options = Java.type('fr.opensagres.xdocreport.converter.Options');
 var DocumentKind = Java.type('fr.opensagres.xdocreport.core.document.DocumentKind');
 
-var SIMPLE_PLACEHOLDER_PATTERN = /\{\{(\w+|\.)\}\}/;
+var SIMPLE_PLACEHOLDER_PATTERN = /\{\{(\w+|\.)\}\}/g;
 var BEGIN_PLACEHOLDER_PATTERN = /\{\{#(\w+)\}\}/;
 var END_PLACEHOLDER_PATTERN = /\{\{\/(\w+)\}\}/;
 
@@ -141,11 +141,10 @@ function replaceIfItExists(paragraph, context, ctxName) {
 }
 
 function replaceTextIfItExists(run, text, context, ctxName) {
-  var m = SIMPLE_PLACEHOLDER_PATTERN.exec(text);
-
-  if (m) {
-    var key = m[1];
-    var newValue = m[0];
+  SIMPLE_PLACEHOLDER_PATTERN.lastIndex = 0;
+  
+  var replacedText = text.replace(SIMPLE_PLACEHOLDER_PATTERN, function(group, key) {
+    var newValue = group;
 
     if ('.'.equals(key) || (ctxName != null && ctxName.equals(key))) {
       newValue = context.toString();
@@ -157,9 +156,10 @@ function replaceTextIfItExists(run, text, context, ctxName) {
       }
     }
 
-    var replaceText = text.replace(m[0], newValue);
-    run.setText(replaceText, 0);
-  }
+    return newValue;
+  });
+
+  run.setText(replacedText, 0);
 }
 
 function cloneParagraph(doc, paragraph, cursor) {

@@ -15,6 +15,8 @@ function exec(describe, it, beforeEach, afterEach, expect, should, assert) {
                 fileBytes,
                 {
                     cod_contrato: 1,
+                    nome: 'Bruno',
+                    idade: '25',
                     nomes: ['Bruno', 'Rodrigo'],
                     responsaveis: [{
                         razao_social: 'João',
@@ -33,7 +35,7 @@ function exec(describe, it, beforeEach, afterEach, expect, should, assert) {
                 return paragraph.getParagraphText();
             });
 
-            let expected = ["", "Contrato - 1", "", "", "Primeira linha de texto", "Segunda linha de texto", "Terceira linha de texto", "João", "321", "Maria", "123", "Uma linha de texto", "Outra linha de texto", "Bruno", "Rodrigo", "Mais outra linha de texto", "Ainda outra linha de texto", "Última linha de texto"];
+            let expected = ["", "Contrato - 1", "", "", "Primeira linha de texto", "Bruno texto Bruno 25", "Terceira linha de texto", "João", "321", "Maria", "123", "Uma linha de texto", "Outra linha de texto", "Bruno", "Rodrigo", "Mais outra linha de texto", "Ainda outra linha de texto", "Última linha de texto"];
             paragraphs.forEach(function(paragraph, index) {
                 expect(paragraph, 'Falha no parágrafo: ' + index).to.equal(expected[index]);
             });
