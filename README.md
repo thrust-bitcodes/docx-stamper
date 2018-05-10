@@ -1,4 +1,4 @@
-docx-stamper
+docx-stamper [![Build Status](https://travis-ci.org/thrust-bitcodes/docx-stamper.svg?branch=master)](https://travis-ci.org/thrust-bitcodes/docx-stamper)
 ===============
 
 docx-stamper é um *bitcode* de renderização de docx baseado em templates para [thrust](https://github.com/thrustjs/thrust).
@@ -71,7 +71,7 @@ function getFileBytes(file) {
 }
 
 function saveFile(file, bytes) {
-  var outPath = Paths.get();
+  var outPath = Paths.get(file);
   Files.write(outPath, bytes);
 }
 
